@@ -5,9 +5,6 @@
 A fully implemented end-to-end encrypted peer-to-peer messaging system
 simulating a realistic multi-party business scenario with a Certificate Authority.
 
-**AI Usage Declaration**: Claude AI was used for code structure suggestions
-and debugging assistance. All algorithm logic, mathematical formulations,
-and implementation decisions were reviewed and understood by the team.
 
 ---
 
@@ -290,3 +287,14 @@ Paillier and Kyber-Edu are used only once per session (hybrid key exchange), so 
 - Blowfish and RC4 were not covered in lectures — chosen per coursework requirement
 - Paillier was not covered in lectures — chosen per coursework requirement
 - Kyber-Edu is an educational Kyber-style implementation, not standardized production ML-KEM
+- **AI Usage Declaration**: Claude AI was used for code structure suggestions
+and debugging assistance. All algorithm logic, mathematical formulations,
+and implementation decisions were reviewed and understood by the team.
+
+
+## Team
+- Aly Ahmed Neanaa
+- Mohamed Hani Kamal ElDin  
+- Ganna Mokhtar Ahmed Mohamed
+
+Cryptography & Cryptanalysis — Final Project, 2026
