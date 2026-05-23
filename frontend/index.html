@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secure Messenger Transfer Console</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Cryptography coursework visualizer</p>
+          <h1>Secure Messenger Transfer Console</h1>
+          <p class="hero-copy">
+            Follow the full transfer: CA trust, Paillier session-key exchange,
+            RC4 in-transit packets, and Blowfish at-rest storage.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="demoButton" class="button primary" type="button">Run sample flow</button>
+          <button id="resetButton" class="button ghost" type="button">Reset lab</button>
+        </div>
+      </header>
+
+      <section class="metrics" aria-label="Session metrics">
+        <article class="metric-card">
+          <span>Session</span>
+          <strong id="sessionId">...</strong>
+        </article>
+        <article class="metric-card">
+          <span>Session key</span>
+          <strong id="sessionKey">...</strong>
+        </article>
+        <article class="metric-card">
+          <span>Delivered</span>
+          <strong id="deliveredCount">0</strong>
+        </article>
+        <article class="metric-card warning">
+          <span>Blocked</span>
+          <strong id="blockedCount">0</strong>
+        </article>
+      </section>
+
+      <section class="network-grid" aria-label="Network entities">
+        <article id="aliceCard" class="entity-card"></article>
+        <article id="caCard" class="entity-card ca-card"></article>
+        <article id="bobCard" class="entity-card"></article>
+      </section>
+
+      <section class="workspace">
+        <aside class="control-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Live transfer</p>
+            <h2>Send a message</h2>
+          </div>
+
+          <form id="messageForm" class="message-form">
+            <label for="senderSelect">Sender</label>
+            <select id="senderSelect" name="from">
+              <option value="Alice">Alice to Bob</option>
+              <option value="Bob">Bob to Alice</option>
+            </select>
+
+            <label for="messageInput">Plaintext</label>
+            <textarea
+              id="messageInput"
+              name="message"
+              rows="5"
+              placeholder="Type a message to encrypt, transmit, decrypt, and store..."
+            ></textarea>
+
+            <button class="button primary wide" type="submit">Encrypt and transfer</button>
+          </form>
+
+          <div class="danger-zone">
+            <p class="mini-title">Certificate revocation demo</p>
+            <div class="split-actions">
+              <button id="revokeAliceButton" class="button danger" type="button">Revoke Alice</button>
+              <button id="revokeBobButton" class="button danger" type="button">Revoke Bob</button>
+            </div>
+            <p class="fine-print">
+              After revocation, that sender's next message is stopped at certificate validation.
+            </p>
+          </div>
+
+          <div class="danger-zone lab-zone">
+            <p class="mini-title">Multi-party localhost lab</p>
+            <button id="simulationButton" class="button ghost dark wide" type="button">
+              Run threaded CA/server/Alice/Bob simulation
+            </button>
+            <p class="fine-print">
+              Runs the socket-based CA, relay, Bob, and Alice workflow and prints the trace below.
+            </p>
+          </div>
+        </aside>
+
+        <section class="process-panel">
+          <div class="panel-heading inline-heading">
+            <div>
+              <p class="eyebrow">Process timeline</p>
+              <h2>What happened</h2>
+            </div>
+            <span id="toast" class="toast" role="status"></span>
+          </div>
+          <div id="phaseList" class="phase-list"></div>
+        </section>
+      </section>
+
+      <section class="details-grid">
+        <article class="detail-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Messages</p>
+            <h2>Transfer history</h2>
+          </div>
+          <div id="messageList" class="message-list"></div>
+        </article>
+
+        <article class="detail-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Selected packet</p>
+            <h2>Inspector</h2>
+          </div>
+          <div id="stageList" class="stage-list"></div>
+          <div id="packetInspector" class="packet-inspector"></div>
+        </article>
+      </section>
+
+      <section class="details-grid bottom-grid">
+        <article class="detail-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">At rest</p>
+            <h2>Blowfish logs</h2>
+          </div>
+          <div id="logsGrid" class="logs-grid"></div>
+        </article>
+
+        <article class="detail-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Captured stdout</p>
+            <h2>Terminal trace</h2>
+          </div>
+          <pre id="tracePanel" class="trace-panel"></pre>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
